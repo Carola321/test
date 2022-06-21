@@ -1,0 +1,40 @@
+{% extends 'sklep/base/base.html' %}
+{% load static %}
+{% block content %}
+    {% if user.is_authenticated %}
+        {% if czy_puste %}
+        Twoje zamowienie jest puste :c
+            <p>
+                <a href="{% url 'sklep:base' %}">Powrót do zakupów</a>
+            </p>
+        {% else %}
+            {% for p_z in aktualne_zamowienie.get_pozycje_zamowienia %}
+            {{ p_z.produkt.marka }} {{ p_z.produkt.model }}<br>
+            rozmiar {{ p_z.rozmiar }}<br>
+
+            ilosc {{ p_z.ilosc }}<br>
+            <button data-p_z="{{ p_z.id }}" data-action="increase" class="update-cart">^</button>
+            <button data-p_z="{{ p_z.id }}" data-action="decrease" class="update-cart">v</button>
+            <form method="POST" action="{% url 'sklep:delete_from_cart' %}">
+                {% csrf_token %}
+            <button name="to_delete" value="{{ p_z.id }}" type="submit">
+                Usun z koszyka
+            </button>
+            </form>
+        {% endfor %}
+        {{ aktualne_zamowienie.get_kwota_zamowienia }}
+        <p>
+            <a href="{% url 'sklep:base' %}">Powrót do zakupów</a>
+        </p>
+        <p>
+            <a href="{% url 'sklep:address_selection' %}">Wybór adresu</a>
+        </p>
+        {% endif %}
+    {% else %}
+        <p>Zaloguj się, aby zobaczyć koszyk</p>
+    {% endif %}
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'sklep/order/shopping_cart.js' %}"></script>
+{% endblock %}
