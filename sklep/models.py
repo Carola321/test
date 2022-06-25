@@ -39,7 +39,7 @@ class Adres(models.Model):
     ulica = models.CharField(max_length=50, blank=True, null=True)
     kod_pocztowy = models.CharField(max_length=6)
     numer_domu = models.CharField(max_length=5)
-    numer_lokalu = models.IntegerField(blank=True,null=True)
+    numer_lokalu = models.CharField(max_length = 5, blank=True,null=True)
     imie = models.CharField(max_length=50,blank=True,null=True)
     nazwisko = models.CharField(max_length=50,blank=True,null=True)
     klient = models.ForeignKey(Klient,on_delete=models.CASCADE,null=True,blank=True)
@@ -92,7 +92,7 @@ class Opinie(models.Model):
 
 class Zdjecia(models.Model):
     zdjecie = models.ImageField(upload_to = 'images',null=True) #sciezka w staticu, poczytaj jeszcze
-
+    produkt = models.ForeignKey('Produkt',on_delete=models.CASCADE,null=True)
     class Meta:
         verbose_name = "Zdjecie"
         verbose_name_plural = "Zdjecia"
@@ -124,7 +124,7 @@ class Produkt(models.Model):
     model = models.CharField(max_length=50)
     cena = models.DecimalField(max_digits=9,decimal_places=2)
     opis = models.CharField(max_length=500, blank=True)
-    zdjecia = models.ForeignKey('Zdjecia',on_delete=models.CASCADE,null=True)
+    zdjecie_glowne = models.ImageField(upload_to = 'images',null=True)
     podkategoria = models.ForeignKey('Podkategoria',on_delete=models.CASCADE,null=True)
 
 
