@@ -88,7 +88,8 @@
         <div class="order-panel">
             <div class='go-next'>
             <form method="POST" action="{% url 'sklep:base' %}">
-                <button type="submit" class="go-next-btn">Powrót do strony głównej</button>
+                {% csrf_token %}
+                <button type="submit" class="go-next-btn">Strona główna</button>
             </form>
             </div>
         </div>

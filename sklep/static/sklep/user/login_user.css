@@ -79,7 +79,6 @@
     font-family: var(--bodyFontFamily), var(--bodyFontFamilyFallback);
     font-size: var(--bodyFontSize);
     font-weight: var(--bodyFontWeight);
-    line-height: var(--bodyLineHeight);
     margin: 0;
     min-block-size: 100vh;
   }
@@ -241,4 +240,55 @@
 
   a:hover{
     text-decoration: none;
+  }
+
+
+  /*validation*/
+
+  #message {
+    display:none;
+    background: #ffffff;
+    border: #363b41 solid 1px;
+    font-size: 15px;
+    color: #000;
+    position: relative;
+    padding: 20px;
+    margin-top: 10px;
+  }
+  
+  #message p {
+    font-size: 15px;
+    padding: 0 35px;
+  }
+
+  .valid {
+    color: green;
+  }
+  
+  .valid:before {
+    position: relative;
+    left: -35px;
+    content: "✔";
+  }
+
+  .invalid {
+    color: red;
+  }  
+
+  .invalid:before {
+    position: relative;
+    left: -35px;
+    content: "✖";
+  }
+
+  #id_data_urodzenia_month{
+    width: 45%;
+  }
+
+  #id_data_urodzenia_day{
+    width: 20%;
+  }
+
+  #id_data_urodzenia_year{
+    width: 35%;
   }

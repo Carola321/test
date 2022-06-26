@@ -4,6 +4,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+from django.core.validators import RegexValidator
 
 
 # Create your models here.
@@ -60,7 +61,7 @@ class Podkategoria(models.Model):
         verbose_name_plural = "Podkategorie"
 
     def __str__(self):
-        return f"{self.nazwa}"
+        return f"{self.nazwa} {self.kategoria.nazwa}"
 
 
 
@@ -206,8 +207,8 @@ class RodzajePlatnosci(models.Model):
 
 
 class KartyPlatnicze(models.Model):
-    numer = models.CharField(max_length=16)
-    cvc = models.CharField(max_length=3)
+    numer = models.CharField(validators=[RegexValidator(regex='^.{16}$', message='Zły numer', code='nomatch')], max_length=16)
+    cvc = models.CharField(validators=[RegexValidator(regex='^.{3}$', message='Zły numer', code='nomatch')], max_length=3)
     miesiac = models.CharField(max_length=2)
     rok = models.CharField(max_length=2)
     klient = models.ForeignKey('Klient',on_delete=models.CASCADE,null=True)
