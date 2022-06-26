@@ -7,10 +7,9 @@
 .shopping-cart{
     display: flex;
     gap:50px;
-    font-size:1rem;
+    font-size:1.3rem;
     justify-content: space-between;
 }
-
 
 .left-side-address{
     display: flex;
@@ -74,12 +73,10 @@
     gap:20px
 }
 
-
 .order-summary{
     text-align: center;
     
 }
-
 
 .order-panel{
     padding: 20px;
@@ -109,6 +106,7 @@
     height:40px;
     color:white;
     background-color: black;
+    font-size:1.5rem;
     border: 1px solid #ddd;
 }
 
@@ -142,7 +140,6 @@
     gap: 10px;
 }
 
-
 .delivery-info{
     display: flex;
     flex-direction: column;
@@ -157,5 +154,3 @@
     justify-content: space-between;
     
 }
-
-
